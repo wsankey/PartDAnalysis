@@ -1,6 +1,6 @@
 import pandas as pd
 #Let's read in the CSV and retain the columns we're interested in.
-df = pd.read_csv("PartD_Prescriber_PUF_NPI_DRUG_Aa_AL_CY2013.csv", nrows=100000)
+df = pd.read_csv("PartD_Prescriber_PUF_NPI_DRUG_Aa_AL_CY2013.csv")
 
 df = df[['npi', 'total_drug_cost', 'nppes_provider_last_org_name', 'nppes_provider_first_name', 'nppes_provider_city', 'nppes_provider_state', 'generic_name']]
 #We identify the following generics as opioids. 
@@ -29,4 +29,5 @@ df = df.drop_duplicates(cols='npi')
 
 top100 = df.sort('tot', ascending=False)[:100]
 top100 = top100[['npi', 'tot', 'nppes_provider_last_org_name', 'nppes_provider_first_name', 'nppes_provider_city', 'nppes_provider_state']]
+print top100.head(5)
 top100.to_csv('top_prescribers_in_first_file.csv')
