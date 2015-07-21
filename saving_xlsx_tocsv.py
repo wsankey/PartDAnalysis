@@ -21,7 +21,10 @@ for x in range(0,1):
 
     print "Beginning to write now..."
     for rownum in xrange(sh.nrows):
+        try:
           wr.writerow(sh.row_values(rownum))
+        except (UnicodeEncodeError, UnicodeDecodeError):
+            print "Caught unicode error"
 
     your_csv_file.close()
     print "Saved the " + str(counter) + " one!"
